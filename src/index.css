@@ -1,0 +1,118 @@
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/jetbrains-mono/600.css';
+@import '@fontsource/newsreader/400.css';
+@import '@fontsource/newsreader/500.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Theme Tokens */
+    --bg-canvas: #FAFAFA;
+    --bg-card: #FFFFFF;
+    --bg-card-raised: #F8FAFC;
+    --border-subtle: #E2E8F0;
+    --border-strong: #CBD5E1;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #94A3B8;
+    --accent-thermal: #EA580C;
+    --accent-thermal-hover: #C2410C;
+    --accent-thermal-tint: #FFF7ED;
+    --accent-sustainability: #059669;
+    --accent-sustainability-tint: #ECFDF5;
+  }
+
+  .dark {
+    /* Dark Theme Tokens (Default) */
+    --bg-canvas: #0F172A;
+    --bg-card: #1E293B;
+    --bg-card-raised: #334155;
+    --border-subtle: #334155;
+    --border-strong: #475569;
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+    --accent-thermal: #F97316;
+    --accent-thermal-hover: #EA580C;
+    --accent-thermal-tint: rgba(249, 115, 22, 0.12);
+    --accent-sustainability: #10B981;
+    --accent-sustainability-tint: rgba(16, 185, 129, 0.12);
+  }
+
+  * {
+    border-color: var(--border-subtle);
+  }
+
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Tabular figures for telemetry, prices, and KPIs */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Accessible focus ring */
+.focus-ring {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-thermal focus-visible:ring-offset-2 focus-visible:ring-offset-canvas;
+}
+
+/* Micro-label style helper */
+.micro-label {
+  @apply font-mono text-[10px] uppercase tracking-wider text-tmuted;
+}
+
+/* Custom discreet scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Fluid flow animation keyframe */
+@keyframes fluid-flow {
+  0% {
+    stroke-dashoffset: 40;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-fluid-flow {
+  animation: fluid-flow 1.5s linear infinite;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
